@@ -1,18 +1,24 @@
 import { Module } from '@nestjs/common';
-import {TypeOrmModule} from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import 'reflect-metadata';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from './modules/config/config.module';
 import { ConfigService } from './modules/config/config.service';
-import { MoviesModule } from './modules/movies/services/movies.module';
+import { MovieModule } from './modules/movies/movie.module';
+
+const entities = [__dirname + '/**/*.entity{.ts,.js}'];
 
 @Module({
-  imports: [TypeOrmModule.forRootAsync({
+  imports: [ConfigModule, TypeOrmModule.forRootAsync({
     imports: [ConfigModule],
-    useFactory: async (configService: ConfigService) => configService.getDBConfig(),
+    useFactory: async (configService: ConfigService) => ({
+      ...configService.getDBConfig(),
+      entities,
+    }) as any,
     inject: [ConfigService],
-  }), ConfigModule, MoviesModule],
+  }), MovieModule],
   controllers: [AppController],
   providers: [AppService],
 })

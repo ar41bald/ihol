@@ -5,7 +5,7 @@ import { ENV_TYPES } from './config.types';
 
 @Global()
 @Module({
-  providers: [    {
+  providers: [{
     provide: ConfigService,
     useValue: new ConfigService(`${process.env.NODE_ENV || ENV_TYPES.development}.env`),
   }],

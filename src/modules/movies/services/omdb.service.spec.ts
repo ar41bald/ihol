@@ -22,7 +22,7 @@ describe('OmdbService', () => {
     it('should return an movie object', async () => {
       const result = { i: 'ssdf3434', title: 'Roundhay Garden Scene'};
 
-      jest.spyOn(httpServiceMock, 'get').mockImplementation(() => result);
+      jest.spyOn(httpServiceMock, 'get').mockImplementation(() => of({data: result}));
 
       expect(await omdbService.fetchMovieInfo({})).toBe(result);
 

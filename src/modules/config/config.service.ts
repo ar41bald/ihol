@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 import * as Joi from '@hapi/joi';
 import * as fs from 'fs';
@@ -7,6 +8,7 @@ import { DB_PROPS, ENV_TYPES, OMDB_PROPS } from './config.types';
 
 export type EnvConfig = Record<string, string>;
 
+@Injectable()
 export class ConfigService {
   private readonly envConfig: EnvConfig;
 
@@ -15,7 +17,7 @@ export class ConfigService {
     this.envConfig = this.validateInput(config);
   }
 
-  public getDBConfig(): Partial<ConnectionOptions> {
+  public getDBConfig(): ConnectionOptions {
     return {
       type: this.getString(DB_PROPS.TYPEORM_CONNECTION) as any,
       host: this.getString(DB_PROPS.TYPEORM_HOST),
@@ -23,7 +25,6 @@ export class ConfigService {
       username: this.getString(DB_PROPS.TYPEORM_USERNAME),
       password: this.getString(DB_PROPS.TYPEORM_PASSWORD),
       database: this.getString(DB_PROPS.TYPEORM_DATABASE),
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: this.getBoolean(DB_PROPS.TYPEORM_SYNCHRONIZE),
     };
   }

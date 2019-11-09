@@ -1,7 +1,7 @@
 import { HttpService, Injectable } from '@nestjs/common';
-import { Observable } from 'rxjs';
 
 import { ConfigService } from '../../config/config.service';
+import { Movie } from '../movie.entity';
 
 @Injectable()
 export class OmdbService {
@@ -13,7 +13,8 @@ export class OmdbService {
     this.OMDB_BASE_API = configService.getOMDbBaseUrl();
   }
 
-  public fetchMovieInfo(params: {[key: string]: string}): Observable<any> {
-    return this.httpService.get(`${this.OMDB_BASE_API}`, { params });
+  public fetchMovieInfo(params: {[key: string]: string}): Promise<Movie> {
+    return this.httpService.get(`${this.OMDB_BASE_API}`, { params }).toPromise()
+      .then(({data}) => data);
   }
 }
