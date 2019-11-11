@@ -10,5 +10,6 @@ import { MovieController } from './controllers/movie.controller';
   imports: [HttpModule, TypeOrmModule.forFeature([Movie])],
   controllers: [MovieController],
   providers: [OmdbService, MovieService],
+  exports: [TypeOrmModule],
 })
 export class MovieModule {}

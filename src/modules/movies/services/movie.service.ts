@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { OmdbService } from './omdb.service';
 import { Movie } from '../movie.entity';
+import { MovieParams } from '../movie-params.service';
 
 @Injectable()
 export class MovieService {
@@ -17,7 +18,7 @@ export class MovieService {
     return await this.moviesRepo.find();
   }
 
-  async create(movieParam: any): Promise<Movie> {
+  async create(movieParam: MovieParams): Promise<Movie> {
     const movieDto = await this.omdbService.fetchMovieInfo(movieParam);
     const movieEntity = await this.moviesRepo.create(movieDto);
     await this.moviesRepo.insert(movieEntity);

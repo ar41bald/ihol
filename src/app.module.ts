@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { ConfigModule } from './modules/config/config.module';
 import { ConfigService } from './modules/config/config.service';
 import { MovieModule } from './modules/movies/movie.module';
+import { CommentModule } from './modules/comments/comment.module';
 
 const entities = [__dirname + '/**/*.entity{.ts,.js}'];
 
@@ -18,7 +19,7 @@ const entities = [__dirname + '/**/*.entity{.ts,.js}'];
       entities,
     }) as any,
     inject: [ConfigService],
-  }), MovieModule],
+  }), MovieModule, CommentModule],
   controllers: [AppController],
   providers: [AppService],
 })

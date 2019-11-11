@@ -4,10 +4,11 @@ export const configServiceMock = {
   getDBConfig: () => {},
   getOMDbBaseUrl: () => {},
 };
-export const movieRepositoryMock = {
+export const repositoryMock = {
   create: () => {},
   insert: () => {},
   find: () => {},
+  findOneOrFail: () => {},
 };
 export const httpServiceMock = {
   get: () => of(),
