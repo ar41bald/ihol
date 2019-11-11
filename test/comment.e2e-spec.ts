@@ -11,6 +11,7 @@ import { EntityNotFoundError } from 'typeorm/error/EntityNotFoundError';
 import { Movie } from '../src/modules/movies/movie.entity';
 import { MovieModule } from '../src/modules/movies/movie.module';
 import { ConfigService } from '../src/modules/config/config.service';
+import { ConfigModule } from '../src/modules/config/config.module';
 
 const commentRepoMock = {...repositoryMock};
 const movieRepoMock = {...repositoryMock};
@@ -20,7 +21,7 @@ describe('CommentController (e2e)', () => {
 
   beforeAll(async () => {
     const moduleFixture = await Test.createTestingModule({
-      imports: [MovieModule, CommentModule],
+      imports: [ConfigModule, MovieModule, CommentModule],
     })
       .overrideProvider(ConfigService)
       .useValue(configServiceMock)

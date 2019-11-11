@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 
 import { Comment } from '../comment.entity';
 import { CommentDto } from '../comment.dto';
@@ -21,7 +21,7 @@ export class CommentService {
 
   async create(commentDto: CommentDto): Promise<Comment> {
     await this.movieRepo.findOneOrFail({where: {imdbID: commentDto.movie}});
-    const commentEntity = await this.commentRepo.create(commentDto);
+    const commentEntity = await this.commentRepo.create(commentDto as DeepPartial<Comment>);
     await this.commentRepo.insert(commentEntity);
 
     return commentEntity;

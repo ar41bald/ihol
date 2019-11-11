@@ -8,13 +8,14 @@ import { MovieModule } from '../src/modules/movies/movie.module';
 import { ConfigService } from '../src/modules/config/config.service';
 import { Movie } from '../src/modules/movies/movie.entity';
 import { configServiceMock, httpServiceMock, repositoryMock } from './utils';
+import { ConfigModule } from '../src/modules/config/config.module';
 
 describe('MovieController (e2e)', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
     const moduleFixture = await Test.createTestingModule({
-      imports: [MovieModule],
+      imports: [ConfigModule, MovieModule],
     })
       .overrideProvider(ConfigService)
       .useValue(configServiceMock)

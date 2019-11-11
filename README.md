@@ -3,7 +3,7 @@
 ## Description
 In Honor of Lumiere :)
 
-Test app for keeping movies
+Test app for keeping movies information
 
 ## Installation
 
