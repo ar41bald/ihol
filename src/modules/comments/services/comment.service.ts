@@ -20,7 +20,7 @@ export class CommentService {
   }
 
   async create(commentDto: CommentDto): Promise<Comment> {
-    await this.movieRepo.findOneOrFail({where: {imdbID: commentDto.movie}});
+    await this.movieRepo.findOneOrFail({where: {imdbID: commentDto.movieImdbID}});
     const commentEntity = await this.commentRepo.create(commentDto as DeepPartial<Comment>);
     await this.commentRepo.insert(commentEntity);
 

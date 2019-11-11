@@ -13,5 +13,5 @@ export class CommentDto {
   @IsNotEmpty({
     message: 'Movie should be an existing imdbID',
   })
-  movie: string;
+  movieImdbID: string;
 }
