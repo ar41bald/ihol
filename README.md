@@ -8,17 +8,16 @@ Test app for keeping movies information
 ## Installation
 
 ```bash
-$ npm install
+# run docker container with the database
+$ docker-compose -p ihol up --force-recreate -d
+$ npm i
 ```
 
 ## Running the app
 
 ```bash
-# development
-$ npm run start
+# npm run start:dev
 
-# watch mode
-$ npm run start:dev
 
 # production mode
 npm run start:prod
@@ -27,6 +26,9 @@ npm run start:prod
 ## Test
 
 ```bash
+# run docker container with the database
+$ docker-compose -p ihol up --force-recreate -d
+
 # unit tests
 $ npm run test
 
