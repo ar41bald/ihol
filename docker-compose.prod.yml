@@ -1,0 +1,11 @@
+version: '3'
+services:
+    apiserver:
+        build:
+            context: ./
+        image: ihol
+        depends_on:
+        - db
+        ports:
+        - '3000:3000'
+
