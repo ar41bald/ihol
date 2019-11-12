@@ -17,7 +17,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:all": "yarn test && yarn test:e2e && yarn test:cov",
     "webpack": "webpack --config webpack.config.js",
-    "heroku-postbuild": "npm install && npm run start"
+    "heroku-postbuild": "npm install"
   },
   "dependencies": {
     "@hapi/joi": "^16.1.7",
