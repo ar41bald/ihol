@@ -18,15 +18,27 @@ export class ConfigService {
   }
 
   public getDBConfig(): ConnectionOptions {
-    return {
-      type: this.getString(DB_PROPS.TYPEORM_CONNECTION) as any,
-      host: this.getString(DB_PROPS.TYPEORM_HOST),
-      port: this.getNumber(DB_PROPS.TYPEORM_PORT),
-      username: this.getString(DB_PROPS.TYPEORM_USERNAME),
-      password: this.getString(DB_PROPS.TYPEORM_PASSWORD),
-      database: this.getString(DB_PROPS.TYPEORM_DATABASE),
-      synchronize: this.getBoolean(DB_PROPS.TYPEORM_SYNCHRONIZE),
-    };
+    let result: ConnectionOptions;
+    const heroku_db_url = process.env.DATABASE_URL;
+    
+    if (heroku_db_url) {
+      result = {
+        type: this.getString(DB_PROPS.TYPEORM_CONNECTION) as any,
+        url: heroku_db_url
+      };
+    } else {
+      result = {
+        type: this.getString(DB_PROPS.TYPEORM_CONNECTION) as any,
+        host: this.getString(DB_PROPS.TYPEORM_HOST),
+        port: this.getNumber(DB_PROPS.TYPEORM_PORT),
+        username: this.getString(DB_PROPS.TYPEORM_USERNAME),
+        password: this.getString(DB_PROPS.TYPEORM_PASSWORD),
+        database: this.getString(DB_PROPS.TYPEORM_DATABASE),
+        synchronize: this.getBoolean(DB_PROPS.TYPEORM_SYNCHRONIZE),
+      };
+    }
+
+    return result;
   }
 
   public getOMDbBaseUrl(): string {

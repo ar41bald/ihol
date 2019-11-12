@@ -12,8 +12,6 @@ async function bootstrap() {
   }));
   app.useGlobalFilters(new QueryFailedErrorFilter());
   app.useGlobalInterceptors(new TransformerInterceptor());
-  const port = process.env.PORT || 3000;
-  console.log('IHOL app is runnning on port: ', port, ' ($PORT):', process.env.$PORT);
-  await app.listen(port);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
