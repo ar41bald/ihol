@@ -20,6 +20,21 @@ $ npm i
 $ npm run start:dev
 ```
 
+## Using 
+```bash
+# Add movie. 'i' or 't' param
+$ curl --data "t=8 Mile" http://0.0.0.0:3000/movies
+# Get all movies
+$ curl http://0.0.0.0:3000/movies
+
+# Add comment. Check that movieImdbID param contains movie id of the existing object
+$ curl --data "author=Greg&text=Simple text&movieImdbID=tt0298203" http://0.0.0.0:3000/comments
+# Get all comments
+$ curl http://0.0.0.0:3000/comments
+```
+
+You can play with the wrong API parameters to see how application will handle it.
+
 ## Test
 
 ```bash
@@ -33,3 +48,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+Additional feature:
+- exception catching layer
+- data transformation layer
+- API parameters validation
