@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "format": "prettier --write \"**/*.ts\"",
-    "start": "npm run start:prod:heroku",
+    "start": "npm run prestart:prod && npm run start:prod:heroku",
     "start:dev": "nodemon",
     "prestart:prod": "tsc",
     "start:prod": "cross-env NODE_ENV=production node dist/main.js",
