@@ -6,16 +6,18 @@
   "license": "MIT",
   "scripts": {
     "format": "prettier --write \"**/*.ts\"",
-    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "start": "npm run start:prod:heroku",
     "start:dev": "nodemon",
     "prestart:prod": "tsc",
     "start:prod": "cross-env NODE_ENV=production node dist/main.js",
+    "start:prod:heroku": "cross-env NODE_ENV=heroku node dist/main.js",
     "start:hmr": "node dist/server",
     "test": "jest",
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:all": "yarn test && yarn test:e2e && yarn test:cov",
-    "webpack": "webpack --config webpack.config.js"
+    "webpack": "webpack --config webpack.config.js",
+    "heroku-postbuild": "npm install && npm run start"
   },
   "dependencies": {
     "@hapi/joi": "^16.1.7",
