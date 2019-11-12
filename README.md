@@ -48,7 +48,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-Additional feature:
+### Additional feature:
 - exception catching layer
 - data transformation layer
 - API parameters validation
