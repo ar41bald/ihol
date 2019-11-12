@@ -52,3 +52,4 @@ $ npm run test:cov
 - exception catching layer
 - data transformation layer
 - API parameters validation
+- environment variables management
