@@ -10,7 +10,7 @@
     "start:dev": "nodemon",
     "prestart:prod": "tsc",
     "start:prod": "cross-env NODE_ENV=production node dist/main.js",
-    "start:prod:heroku": "NODE_ENV=heroku node dist/main.js",
+    "start:prod:heroku": "node dist/main.js",
     "start:hmr": "node dist/server",
     "test": "jest",
     "test:cov": "jest --coverage",
