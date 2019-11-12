@@ -1,0 +1,13 @@
+version: '3'
+services:
+    db:
+        container_name: PostgreTestsIhol
+        image: postgres:10-alpine
+        volumes:
+        - ../docker-volumes/postgresql:/var/lib/postgresql
+        environment:
+        - POSTGRES_USER=ihol
+        - POSTGRES_PASSWORD=ihol
+        - POSTGRES_DB=ihol
+        ports:
+        - '5432:5432'
